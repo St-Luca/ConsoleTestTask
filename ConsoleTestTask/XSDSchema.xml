@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Mark">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MarkId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+          <xs:key name="MarkId_Unique"> <!--Первичный ключ для таблицы "Баллы"-->
+            <xs:selector xpath=".//Mark"/>
+            <xs:field xpath="@MarkId"/>
+          </xs:key>
+        </xs:element>
+        <xs:element name="ClassRef" type ="Class"/>
+        <xs:element name="StudentRef" type="Student"/>
+        <xs:element name="MarkValue" type="myByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="string-2">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2"/>
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="string-4">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4"/>
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="string-5">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="5"/>
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="string-30">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="string-20">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="myByte">
+    <xs:restriction base="xs:byte">
+      <xs:pattern value="[1-8]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name ="Department"> <!--Таблица "Кафедры"-->
+    <xs:sequence>
+      <xs:element name="DepartmentId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+        <xs:key name="DepartmentId_Unique"> <!--Первичный ключ для таблицы "Кафедры"-->
+          <xs:selector xpath=".//Department"/>
+          <xs:field xpath="@DepartmentId"/>
+        </xs:key>
+      </xs:element>
+      <xs:element name="Name" type="string-20" />
+      <xs:element name="Chief" type="string-20" />
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:complexType  name ="Teacher"> <!--Таблица "Преподаватели"-->
+      <xs:sequence>
+        <xs:element name="TeacherId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+          <xs:key name="TeacherId_Unique"> <!--Первичный ключ для таблицы "Преподаватели"-->
+            <xs:selector xpath=".//Teacher"/>
+            <xs:field xpath="@TeacherId"/>
+          </xs:key>
+        </xs:element>
+        <xs:element name="FullName" type="string-20"/>
+        <xs:element name="DepartmentRef" type ="Department"/>
+      </xs:sequence>
+    </xs:complexType>
+
+  <xs:complexType name ="Class"> <!--Таблица "Занятия"-->
+      <xs:sequence>
+        <xs:element name="ClassId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+          <xs:key name="ClassId_Unique"> <!--Первичный ключ для таблицы "Занятия"-->
+            <xs:selector xpath=".//Class"/>
+            <xs:field xpath="@ClassId"/>
+          </xs:key>
+        </xs:element>
+        <xs:element name="Name" type="string-30"/>
+        <xs:element name="TeacherRef" type ="Teacher"/>
+        <xs:element name="Semester" type="string-2" />
+        <xs:element name="Year" type="string-4" />
+      </xs:sequence>
+    </xs:complexType>
+
+  <xs:complexType name ="Group"> <!--Таблица "Группы"-->
+      <xs:sequence>
+        <xs:element name="GroupId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+          <xs:key name="GroupId_Unique"> <!--Первичный ключ для таблицы "Группы"-->
+            <xs:selector xpath=".//Group"/>
+            <xs:field xpath="@GroupId"/>
+          </xs:key>
+        </xs:element>
+        <xs:element name="Name" type="string-5" />
+      </xs:sequence>
+    </xs:complexType>
+
+  <xs:complexType name ="Student"> <!--Таблица "Студенты"-->
+      <xs:sequence>
+        <xs:element name="StudentId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+          <xs:key name="StudentId_Unique"> <!--Первичный ключ для таблицы "Студенты"-->
+            <xs:selector xpath=".//Student"/>
+            <xs:field xpath="@StudentId"/>
+          </xs:key>
+        </xs:element>
+        <xs:element name="FullName" type="string-20" />
+        <xs:element name="GroupRef" type ="Group"/>
+      </xs:sequence>
+    </xs:complexType>
+  
+</xs:schema>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Mark>
+  <MarkId>1</MarkId>
+  <ClassRef> <!--Начало таблицы "Занятия"-->
+    <ClassId>2</ClassId>
+    <Name>Математика</Name>
+    <TeacherRef> <!--Начало таблицы "Преподаватели"-->
+      <TeacherId>1</TeacherId>
+      <FullName>Иванов И. И.</FullName>
+      <DepartmentRef> <!--Начало таблицы "Кафедры"-->
+        <DepartmentId>1</DepartmentId>
+        <Name>ПрограммнаяИнженерия</Name>
+        <Chief>Ивашко А.Г.</Chief>
+      </DepartmentRef>
+    </TeacherRef>  
+    <Semester>1</Semester>
+    <Year>2023</Year>
+  </ClassRef>
+  <StudentRef> <!--Начало таблицы "Студенты"-->
+    <StudentId>1</StudentId>
+    <FullName>Смирнов П. П.</FullName>
+    <GroupRef> <!--Начало таблицы "Группы"-->
+      <GroupId>1</GroupId>
+      <Name>ПИ-02</Name>
+    </GroupRef>
+  </StudentRef>
+  <MarkValue>5</MarkValue>
+</Mark>
